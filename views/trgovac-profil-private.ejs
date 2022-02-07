@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Profil</title>
+    <link rel='stylesheet' href='/stylesheets/style-profil-trgovac.css'/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+            crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+        </head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">HorizonNarudzbe</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarColor03">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" href="/home-trgovac">Home
+                        <span class="visually-hidden">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/dodajArtikal">Dodaj artikal</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/narudzbe">Narudžbe</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/edit-katalog">Katalog</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Opcije</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="/trgovac/profil">Profil</a>
+                        <a class="dropdown-item" href="#">Prijavi neku grešku</a>
+                        <div class="dropdown-divider"></div>
+                        <form action="/logout" method="POST">
+                            <input class="dropdown-item" type="submit" value="Odjavi se"/>
+                        </form>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-7" style="">
+            <div class="card mb-3" style="max-width: 100%; margin: 20px">
+                <div class="row g-0">
+                    <div class="col-md-4" style="height: 100%">
+                        <img src="<%=trgovac.slika_profila%>" class="img-fluid rounded-start" alt="..." style=" height: 220px;">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title"><%=trgovac.naziv_trgovine%></h5>
+                            <p class="card-text">E-mail: <%=trgovac.email%></p>
+                            <p class="card-text">Adresa: <%=trgovac.adresa%></p>
+                            <p class="card-text">Mjesto: <%=trgovac.mjesto%> </p>
+                            <p class="card-text">Kontakt telefon: <%=trgovac.kontakt_telefon%></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-5" style=" text-align: -webkit-center;">
+            <div class="col border" style="margin: 20px; max-width: 30%;">
+                <h5>Rating:<%=trgovac.rating%>/5</h5>
+            </div>
+            <div class="col" style="margin: 20px;">
+                <a href="/edit-profile" id="urediProfil">Uredi Profil</a>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-2" id="filter">
+            <div class="accordion" id="accordionExample">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingOne">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            Kategorije
+                        </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                         data-bs-parent="#accordionExample" style="">
+                        <div class="accordion-body">
+                            <strong>This is the first item's accordion body.</strong> It is shown by default, until the
+                            collapse plugin adds the appropriate classes that we use to style each element. These
+                            classes
+                            control the overall appearance, as well as the showing and hiding via CSS transitions. You
+                            can
+                            modify any of this with custom CSS or overriding our default variables. It's also worth
+                            noting
+                            that just about any HTML can go within the <code>.accordion-body</code>, though the
+                            transition
+                            does limit overflow.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingTwo">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            Cijena
+                        </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                         data-bs-parent="#accordionExample" style="">
+                        <div class="accordion-body">
+                            <strong>This is the second item's accordion body.</strong> It is hidden by default, until
+                            the
+                            collapse plugin adds the appropriate classes that we use to style each element. These
+                            classes
+                            control the overall appearance, as well as the showing and hiding via CSS transitions. You
+                            can
+                            modify any of this with custom CSS or overriding our default variables. It's also worth
+                            noting
+                            that just about any HTML can go within the <code>.accordion-body</code>, though the
+                            transition
+                            does limit overflow.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingThree">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            Stanje
+                        </button>
+                    </h2>
+                    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                         data-bs-parent="#accordionExample" style="">
+                        <div class="accordion-body">
+                            <strong>This is the third item's accordion body.</strong> It is hidden by default, until the
+                            collapse plugin adds the appropriate classes that we use to style each element. These
+                            classes
+                            control the overall appearance, as well as the showing and hiding via CSS transitions. You
+                            can
+                            modify any of this with custom CSS or overriding our default variables. It's also worth
+                            noting
+                            that just about any HTML can go within the <code>.accordion-body</code>, though the
+                            transition
+                            does limit overflow.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-7">
+            <ul class="nav nav-tabs" style="margin-left: 5px;">
+                <li class="nav-item">
+                    <a class="nav-link active" data-bs-toggle="tab" href="#home">Moja radnja</a>
+                </li>
+            </ul>
+            <div id="myTabContent" class="tab-content" style="margin-left: 5px; ">
+
+                <div class="tab-pane fade active show" id="home">
+                    <div class="row row-cols-1 row-cols-md-3 g-4" id="pocetni">
+                        <% for (let i = 0; i < artikal.length; i++) { %>
+
+                                <% if(artikal[i].id_radnje === trgovac.id){ %>
+                                    <div class="col">
+                                        <div class="card mb-3">
+                                            <h5 class="card-header"><%= artikal[i].naziv_artikla %></h5>
+                                            <form action="/prikaziArtikalZaPregled" method="post">
+                                                <a href="#" onclick="parentNode.submit();">
+                                                    <img src="<%= artikal[i].slika_artikla %>"
+                                                         class="d-block user-select-none"
+                                                         width="100%" height="200">
+                                                    <input type="hidden" name="sifraArtikla"
+                                                           value="<%= artikal[i].id_artikla %>"/>
+                                                </a>
+                                            </form>
+                                            <div class="card-body">
+                                                <ul class="list-group list-group-flush">
+                                                    <li class="list-group-item"
+                                                        style="align-self: center"><%= artikal[i].cijena %> KM
+                                                    </li>
+                                                </ul>
+                                                <div class="card-footer text-muted">
+                                                    <%= artikal[i].datum_objave %>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <% } %>
+
+                        <% } %>
+
+                    </div>
+
+                    <div class="row row-cols-1 row-cols-md-3 g-4" id="sortA" style="display: none">
+                        <% for (let i = 0; i < sortA.length; i++) { %>
+
+                                <% if(sortA[i].id_radnje === trgovac.id){ %>
+                                    <div class="col">
+                                        <div class="card mb-3">
+                                            <h5 class="card-header"><%= sortA[i].naziv_artikla %></h5>
+                                            <form action="/prikaziArtikalZaPregled" method="post">
+                                                <a href="#" onclick="parentNode.submit();">
+                                                    <img src="<%= sortA[i].slika_artikla %>"
+                                                         class="d-block user-select-none"
+                                                         width="100%" height="200">
+                                                    <input type="hidden" name="sifraArtikla"
+                                                           value="<%= sortA[i].id_artikla %>"/>
+                                                </a>
+                                            </form>
+                                            <div class="card-body">
+                                                <ul class="list-group list-group-flush">
+                                                    <li class="list-group-item"
+                                                        style="align-self: center"><%= sortA[i].cijena %> KM
+                                                    </li>
+                                                </ul>
+                                                <div class="card-footer text-muted">
+                                                    <%= sortA[i].datum_objave %>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <% } %>
+
+                        <% } %>
+
+                    </div>
+
+                    <div class="row row-cols-1 row-cols-md-3 g-4" id="sortB" style="display: none">
+                        <% for (let i = 0; i < sortB.length; i++) { %>
+
+                                <% if(sortB[i].id_radnje === trgovac.id){ %>
+                                    <div class="col">
+                                        <div class="card mb-3">
+                                            <h5 class="card-header"><%= sortB[i].naziv_artikla %></h5>
+                                            <form action="/prikaziArtikalZaPregled" method="post">
+                                                <a href="#" onclick="parentNode.submit();">
+                                                    <img src="<%= sortB[i].slika_artikla %>"
+                                                         class="d-block user-select-none"
+                                                         width="100%" height="200">
+                                                    <input type="hidden" name="sifraArtikla"
+                                                           value="<%= sortB[i].id_artikla %>"/>
+                                                </a>
+                                            </form>
+                                            <div class="card-body">
+                                                <ul class="list-group list-group-flush">
+                                                    <li class="list-group-item"
+                                                        style="align-self: center"><%= sortB[i].cijena %> KM
+                                                    </li>
+                                                </ul>
+                                                <div class="card-footer text-muted">
+                                                    <%= sortB[i].datum_objave %>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <% } %>
+
+                        <% } %>
+
+                    </div>
+
+                    <div class="row row-cols-1 row-cols-md-3 g-4" id="sortC" style="display: none">
+                        <% for (let i = 0; i < sortC.length; i++) { %>
+
+                                <% if(sortC[i].id_radnje === trgovac.id){ %>
+                                    <div class="col">
+                                        <div class="card mb-3">
+                                            <h5 class="card-header"><%= sortC[i].naziv_artikla %></h5>
+                                            <form action="/prikaziArtikalZaPregled" method="post">
+                                                <a href="#" onclick="parentNode.submit();">
+                                                    <img src="<%= sortC[i].slika_artikla %>"
+                                                         class="d-block user-select-none"
+                                                         width="100%" height="200">
+                                                    <input type="hidden" name="sifraArtikla"
+                                                           value="<%= sortC[i].id_artikla %>"/>
+                                                </a>
+                                            </form>
+                                            <div class="card-body">
+                                                <ul class="list-group list-group-flush">
+                                                    <li class="list-group-item"
+                                                        style="align-self: center"><%= sortC[i].cijena %> KM
+                                                    </li>
+                                                </ul>
+                                                <div class="card-footer text-muted">
+                                                    <%= sortC[i].datum_objave %>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <% } %>
+
+                        <% } %>
+
+                    </div>
+
+                    <div class="row row-cols-1 row-cols-md-3 g-4" id="sortD" style="display: none">
+                        <% for (let i = 0; i < sortD.length; i++) { %>
+
+                                <% if(sortD[i].id_radnje === trgovac.id){ %>
+                                    <div class="col">
+                                        <div class="card mb-3">
+                                            <h5 class="card-header"><%= sortD[i].naziv_artikla %></h5>
+                                            <form action="/prikaziArtikalZaPregled" method="post">
+                                                <a href="#" onclick="parentNode.submit();">
+                                                    <img src="<%= sortD[i].slika_artikla %>"
+                                                         class="d-block user-select-none"
+                                                         width="100%" height="200">
+                                                    <input type="hidden" name="sifraArtikla"
+                                                           value="<%= sortD[i].id_artikla %>"/>
+                                                </a>
+                                            </form>
+                                            <div class="card-body">
+                                                <ul class="list-group list-group-flush">
+                                                    <li class="list-group-item"
+                                                        style="align-self: center"><%= sortD[i].cijena %> KM
+                                                    </li>
+                                                </ul>
+                                                <div class="card-footer text-muted">
+                                                    <%= sortD[i].datum_objave %>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <% } %>
+
+                        <% } %>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-3">
+
+            <div class="btn-group">
+                <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    Sortiraj Artikle Po
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li><button class="dropdown-item" type="button" onclick="sortiraj('sortA')">Naziv(Rastući)</button></li>
+                    <li><button class="dropdown-item" type="button" onclick="sortiraj('sortB')">Naziv(Opadajući)</button></li>
+                    <li><button class="dropdown-item" type="button" onclick="sortiraj('sortC')">Cijena(Rastući)</button></li>
+                    <li><button class="dropdown-item" type="button" onclick="sortiraj('sortD')">Cijena(Opadajući)</button></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+</div>
+
+
+<script>
+    function sortiraj(sortID){
+        var x = document.getElementById(sortID);
+        if (x.style.display == "none") {
+            x.style.display = "flex";
+            document.getElementById("pocetni").style.display = "none"
+            if (sortID === "sortA"){
+                document.getElementById("sortB").style.display = "none";
+                document.getElementById("sortC").style.display = "none";
+                document.getElementById("sortD").style.display = "none";
+            } else if (sortID === "sortB"){
+                document.getElementById("sortA").style.display = "none";
+                document.getElementById("sortC").style.display = "none";
+                document.getElementById("sortD").style.display = "none";
+            } else if (sortID === "sortC"){
+                document.getElementById("sortA").style.display = "none";
+                document.getElementById("sortB").style.display = "none";
+                document.getElementById("sortD").style.display = "none";
+            } else {
+                document.getElementById("sortA").style.display = "none";
+                document.getElementById("sortB").style.display = "none";
+                document.getElementById("sortC").style.display = "none";
+            }
+        }
+    }
+
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+</body>
+</html>

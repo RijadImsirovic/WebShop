@@ -1,0 +1,11 @@
+#urediProfil{
+    padding: 10px;
+    text-decoration: none;
+    color: black;
+    border: 1px solid mediumseagreen;
+}
+
+#urediProfil:hover{
+    background-color: mediumseagreen;
+    color: white;
+}

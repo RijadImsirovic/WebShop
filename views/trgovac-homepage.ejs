@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Home-Trgovac</title>
+    <link rel='stylesheet' href='/stylesheets/style-home-trgovac.css' />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+
+  </head>
+  <body>
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">HorizonNarudzbe</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarColor03">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item">
+            <a class="nav-link active" href="/home-trgovac">Home
+              <span class="visually-hidden">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/dodajArtikal">Dodaj artikal</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/narudzbe">Narudžbe</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/edit-katalog">Katalog</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Opcije</a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="/trgovac/profil">Profil</a>
+              <a class="dropdown-item" href="#">Prijavi neku grešku</a>
+              <div class="dropdown-divider"></div>
+              <form action="/logout" method="POST">
+                <input class="dropdown-item" type="submit" value="Odjavi se"/>
+              </form>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div style=" height: 15vh">
+    <br>
+    <h2 style="margin-left: 50px">Dobrodošli, <%= trgovac.naziv_trgovine%></h2>
+  </div>
+
+
+
+<div class="container-fluid">
+
+  <div class="row">
+    <div class="col" id="filter">
+
+      <div class="accordion" id="accordionExample">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingOne">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              Kategorije
+            </button>
+          </h2>
+          <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample" style="">
+            <div class="accordion-body">
+              <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingTwo">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              Cijena
+            </button>
+          </h2>
+          <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample" style="">
+            <div class="accordion-body">
+              <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingThree">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+              Stanje
+            </button>
+          </h2>
+          <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample" style="">
+            <div class="accordion-body">
+              <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-8">
+      <ul class="nav nav-tabs" style="margin-left: 5px;">
+        <li class="nav-item">
+          <a class="nav-link active" data-bs-toggle="tab" href="#home">Moja radnja</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-bs-toggle="tab" href="#profile">Prodato</a>
+        </li>
+      </ul>
+      <div id="myTabContent" class="tab-content" style="margin-left: 5px; ">
+
+        <div class="tab-pane fade active show" id="home">
+          <div class="row row-cols-1 row-cols-md-3 g-4">
+            <% for (let i=0; i < artikal.length; i++) {%>
+            <%if(artikal[i].id_radnje === trgovac.id){%>
+              <div class="col">
+                <div class="card mb-3" >
+                  <h5 class="card-header"><%= artikal[i].naziv_artikla%></h5>
+                  <form action="/prikaziArtikalZaPregled" method="post">
+                    <a href="#" onclick="parentNode.submit();">
+                      <img src="<%= artikal[i].slika_artikla%>" class="d-block user-select-none" width="100%" height="200" >
+                    </a>
+                    <input type="hidden" name="sifraArtikla" value="<%=artikal[i].id_artikla%>"/>
+                  </form>
+                  <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                      <li class="list-group-item" style="align-self: center"><%= artikal[i].cijena%> KM</li>
+                    </ul>
+                    <div class="card-footer text-muted">
+                      <%= artikal[i].datum_objave%>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <%}%>
+            <%}%>
+          </div>
+        </div>
+        <div class="tab-pane fade" id="profile">
+          nista jos
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="btn-group">
+        <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+          Sortiraj Artikle Po
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end">
+          <li><button class="dropdown-item" type="button" onclick="sortiraj('sortA')">Naziv(Rastući)</button></li>
+          <li><button class="dropdown-item" type="button" onclick="sortiraj('sortB')">Naziv(Opadajući)</button></li>
+          <li><button class="dropdown-item" type="button" onclick="sortiraj('sortC')">Cijena(Rastući)</button></li>
+          <li><button class="dropdown-item" type="button" onclick="sortiraj('sortD')">Cijena(Opadajući)</button></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+  </body>
+</html>

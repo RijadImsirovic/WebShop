@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Home-Trgovac</title>
+    <link rel='stylesheet' href='/stylesheets/style-home-trgovac.css' />
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel='stylesheet' href='/stylesheets/styleoriginal.css'/>
+    <script>
+      function uredi(artikal_id){
+        // Treba da kupi vrijednost polja i da pozove neku rutu
+        console.log(document.getElementById("naziv").value);
+        $.ajax({
+          url: "/uredioSam/" + artikal_id + "/" + document.getElementById("naziv").value + "/" + document.getElementById("cijena").value + "/" + document.getElementById("kategorija").value + "/" + document.getElementById("stanje").value + "/" +document.getElementById("kolicina").value + "/" + document.getElementById("detaljno").value,
+          data: {},
+          type: 'POST',
+          beforeSend: function () {
+
+          }
+        }).done(function (data){
+
+        });
+        window.location = "http://localhost:3000/home-trgovac";
+      };
+    </script>
+  </head>
+  <body>
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">HorizonNarudzbe</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarColor03">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item">
+            <a class="nav-link active" href="/home-trgovac">Home
+              <span class="visually-hidden">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/dodajArtikal">Dodaj artikal</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/narudzbe">Narudžbe</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/edit-katalog">Katalog</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Opcije</a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="/trgovac/profil">Profil</a>
+              <a class="dropdown-item" href="#">Prijavi neku grešku</a>
+              <div class="dropdown-divider"></div>
+              <form action="/logout" method="POST">
+                <input class="dropdown-item" type="submit" value="Odjavi se"/>
+              </form>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+
+  <section class="ftco-section" style="background-color: #141313; width: 100vw">
+    <div class="container" style="height: 100vh;">
+      <div class="row justify-content-center">
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-4">
+          <div class="login-wrap p-0">
+            <h3 class="mb-4 text-center">Popunite polja:</h3>
+
+              <div class="form-group">
+                <input type="text" class="form-control" id="naziv" name="articleNameNovi" value="<%=artikal[0].naziv_artikla%>" required>
+              </div>
+
+              <div class="form-group">
+                <input type="number" class="form-control" id="cijena" name="priceNovi" value="<%=artikal[0].cijena%>" required>
+              </div>
+
+              <div class="form-group">
+                <p>Odaberite Stanje:</p>
+                <select class="form-select" id="stanje" name="stanjeArtNovi">
+                  <option value="1">Novo</option>
+                  <option value="2">Korišteno</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label>Kategorija</label>
+                <select class="form-select" id="kategorija" name="kategArtNovi">
+                  <% for (let i=0; i < kategorije.length; i++) {%>
+                  <option value="<%=kategorije[i].id%>"><%=kategorije[i].naziv_kategorije%></option>
+                  <%}%>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <input type="number" class="form-control" id="kolicina" name="kolicinaNovi" value="<%=artikal[0].kolicina%>" required>
+              </div>
+
+              <div class="form-group">
+                <textarea class="form-control"  placeholder="Detaljne Informacije" id="detaljno" name="detaljneInfNovi" rows="3" style="height: 130px; white-space: pre-wrap; "><%=artikal[0].detaljne_informacije%></textarea>
+              </div>
+
+              <div class="form-group">
+                <input type="hidden" name="sifraArtikla" value="<%=artikal[0].id_artikla%>">
+                <button type="button" class="form-control btn btn-primary submit px-3" onclick="uredi('<%=artikal[0].id_artikla%>')">Pošalji</button>
+              </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+  </body>
+</html>

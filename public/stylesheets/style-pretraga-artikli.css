@@ -1,0 +1,9 @@
+#filterKateg:hover{
+  background-color: lightgreen;
+}
+
+#kateg{
+ padding: 0;
+  border: none;
+  background:inherit;
+}
