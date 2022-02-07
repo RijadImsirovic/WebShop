@@ -1,0 +1,10 @@
+body {
+  overflow: hidden;
+  background-image: url("../../uploads/bg1.jpg");
+  background-repeat: no-repeat;
+}
+
+.login {
+  background-color: rgba(0,0,0,0.6);
+  padding: 20px;
+}

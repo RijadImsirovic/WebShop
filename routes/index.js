@@ -14,16 +14,16 @@ var nodemailer = require('nodemailer');
 var transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: 'fabuelvortex@gmail.com',
-    pass: 'rikizvanirile123'
+    user: 'webshopbot@gmail.com',
+    pass: 'sifra12345'
   }
 });
 
 var mailOptions = {
-  from: 'fabuelvortex@gmail.com',
+  from: 'webshopbot@gmail.com',
   to: 'rijad.imsirovic@yahoo.com',
   subject: 'Transaction Details',
-  text: 'Your transaction was completed'
+  text: 'Your transaction was completed.'
 };
 
 
@@ -158,7 +158,7 @@ passport.use('local-trgovci',new LocalStrategy((username, password, done) => {
 
   pool.query(`select * from korisnici_trgovci where naziv_trgovine = $1`,[username] ,(err, result) => {
 
-    if(result.rows[0].block_period === null) {
+
       if (err) {
         console.info(err);
         return done(err);
@@ -183,7 +183,7 @@ passport.use('local-trgovci',new LocalStrategy((username, password, done) => {
         }
 
       }
-    }
+
   });
 
 
@@ -709,84 +709,6 @@ var db = {
       }
 
       req.sortD = result.rows;
-      next();
-    });
-  },
-  sortPretraguArtiklaA: function (req, res, next) {
-
-    pool.query(`select * from artikli where naziv_artikla ILIKE '%' || $1 || '%' order by cijena DESC`, (err, result) => {
-
-      if (err) {
-        console.info(err);
-        return next();
-      }
-
-      req.sortA = result.rows;
-      next();
-    });
-  },
-  sortPretraguArtiklaB: function (req, res, next) {
-
-    pool.query(`select * from artikli where naziv_artikla ILIKE '%' || $1 || '%'`, (err, result) => {
-
-      if (err) {
-        console.info(err);
-        return next();
-      }
-
-      req.sortA = result.rows;
-      next();
-    });
-  },
-  sortPretraguTrgovcaA: function (req, res, next) {
-
-    pool.query(`select * from sortA`, (err, result) => {
-
-      if (err) {
-        console.info(err);
-        return next();
-      }
-
-      req.sortA = result.rows;
-      next();
-    });
-  },
-  sortPretraguTrgovcaB: function (req, res, next) {
-
-    pool.query(`select * from sortA`, (err, result) => {
-
-      if (err) {
-        console.info(err);
-        return next();
-      }
-
-      req.sortA = result.rows;
-      next();
-    });
-  },
-  sortPretraguKategA: function (req, res, next) {
-
-    pool.query(`select * from sortA`, (err, result) => {
-
-      if (err) {
-        console.info(err);
-        return next();
-      }
-
-      req.sortA = result.rows;
-      next();
-    });
-  },
-  sortPretraguKategB: function (req, res, next) {
-
-    pool.query(`select * from sortA`, (err, result) => {
-
-      if (err) {
-        console.info(err);
-        return next();
-      }
-
-      req.sortA = result.rows;
       next();
     });
   },
